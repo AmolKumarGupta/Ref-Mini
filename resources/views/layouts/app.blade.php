@@ -9,16 +9,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  @if (env('IS_DEMO'))
-      <x-demo-metas></x-demo-metas>
-  @endif
+  <meta name="keywords" content="cms, refmini, laravel" />
+  <meta name="description" content="A personal cms" />
+  <meta name="twitter:card" content="website" />
+  <meta name="twitter:site" content="" />
+  <meta name="twitter:title" content="{{ env('APP_NAME') }}" />
+  <meta name="twitter:description" content="A personal CMS" />
+  <meta name="twitter:image" content="" />
+  <meta property="og:title" content="{{ env('APP_NAME') }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ asset('/') }}" />
+  <meta property="og:image" content="" />
+  <meta property="og:description" content="A personal CMS" />
 
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/assets/img/apple-icon.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('public/assets/img/favicon.png') }}">
-  <title>
-    Soft UI Dashboard by Creative Tim
-  </title>
+  <title>{{ env('APP_NAME') }}</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -29,6 +35,7 @@
   <link href="{{ asset('public/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('public/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
+  <link href="{{ asset('public/css/app.css') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100 {{ (\Request::is('rtl') ? 'rtl' : (Request::is('virtual-reality') ? 'virtual-reality' : '')) }} ">
