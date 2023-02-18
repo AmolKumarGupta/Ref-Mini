@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
                 <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
                 <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
                 <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -83,7 +83,7 @@
               </div>
             </div>
             <div class="col-4 text-end">
-              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+              <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md">
                 <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
               </div>
             </div>
@@ -109,7 +109,7 @@
               </div>
             </div>
             <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-              <div class="bg-gradient-primary border-radius-lg h-100">
+              <div class="bg-gradient-info border-radius-lg h-100">
                 <img src="{{asset('public/assets/img/shapes/waves-white.svg')}}" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                 <div class="position-relative d-flex align-items-center justify-content-center h-100">
                   <img class="w-100 position-relative z-index-2 pt-4" src="{{asset('public/assets/img/illustrations/rocket-white.png')}}" alt="rocket">
@@ -151,7 +151,7 @@
             <div class="row">
               <div class="col-3 py-3 ps-0">
                 <div class="d-flex mb-2">
-                  <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
+                  <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center">
                     <svg width="10px" height="10px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                       <title>document</title>
                       <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
