@@ -30,7 +30,7 @@
                     </div>
                     <div class="card-body">
                     
-                        <form action="/forgot-password" method="POST" role="form text-left">
+                        <form action="{{url('/forgot-password')}}" method="POST" role="form text-left">
                             @csrf
                             <div>
                                 <label for="email">Email</label>
@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-6">
                 <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                    <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('../assets/img/curved-images/curved6.jpg')"></div>
+                    <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('{{asset("public/assets/img/curved-images/curved6.jpg")}}')"></div>
                 </div>
             </div>
         </div>
