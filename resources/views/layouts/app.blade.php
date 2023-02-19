@@ -22,7 +22,7 @@
   <meta property="og:image" content="" />
   <meta property="og:description" content="A personal CMS" />
 
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/assets/img/apple-icon.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/assets/img/logo.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('public/assets/img/logo.png') }}">
   <title>{{ env('APP_NAME') }}</title>
   <!--     Fonts and icons     -->
