@@ -1,3 +1,8 @@
 .navbar-vertical.navbar-expand-xs .navbar-collapse{
     height: calc( 100vh - 130px );
 }
+
+/* utilities */
+.space-x-2 > *+*{
+    margin-left: 0.5rem;
+}

@@ -6,6 +6,7 @@ use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,13 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/login', function () {
 	// 	return view('dashboard');
 	// })->name('sign-up');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::prefix('menu')->group(function () {
+		Route::get('/', [MenuController::class, 'index']);
+
+	});
 });
 
 
