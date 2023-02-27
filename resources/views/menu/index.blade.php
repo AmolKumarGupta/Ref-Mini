@@ -3,34 +3,44 @@
 @section('content')
 <div class="row">
     <div class="col-lg-4">
-        <div class="card">
+        @livewire('menu.sections')
+    </div>
+</div>
 
-            <div class="card-header pb-0">
-                <h5>Menu Section</h5>
+<!-- MODAL -->
+<div class="modal fade" id="modal-menusection-create" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modal-title-default">Create Menu Section</h6>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                    {{-- <span aria-hidden="true">x</span> --}}
+                </button>
             </div>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-sm border-top border-bottom">
-                        <tbody>
-                            @foreach($menuSection as $section)
-                            <tr data-id="{{ $section->id }}">
-                                <td><i role="button" class="fas fa-grip-vertical"></i></td>
-                                <td class="text-capitalize">{{ $section->name }}</td>
-                                <td class="w-0">
-                                    <div class="text-end space-x-2">
-                                        <i role="button" class="text-gradient text-info fa fa-sm fa-pen"></i>
-                                        <i role="button" class="text-gradient text-danger fa fa-sm fa-trash"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+            <form onsubmit="create(event)">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Create">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-gradient-success" >Save changes</button>
+                    <button type="button" class="btn ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('public/assets/js/menu.js') }}"></script>
 @endsection

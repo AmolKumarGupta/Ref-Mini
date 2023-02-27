@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 class MenuController extends Controller
 {
     public function index() {
-        $menuSection = MenuSection::orderBy('order', 'ASC')->get();
-
-        return view('menu.index', compact( 'menuSection' ));
+        return view('menu.index');
     }
 }
