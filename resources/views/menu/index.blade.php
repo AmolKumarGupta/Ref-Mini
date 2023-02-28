@@ -25,7 +25,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Create">
-                                
+                                <small data-error="name" class="text-danger"></small>
                             </div>
                         </div>
                     </div>
@@ -42,5 +42,8 @@
 @endsection
 
 @section('scripts')
+<script>
+    const createUrl = '{{ route("menu.section.create") }}';
+</script>
 <script src="{{ asset('public/assets/js/menu.js') }}"></script>
 @endsection

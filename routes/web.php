@@ -73,7 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::prefix('menu')->group(function () {
 		Route::get('/', [MenuController::class, 'index']);
-
+		Route::post('/create', [MenuController::class, 'create'])->name('menu.section.create');
 	});
 });
 

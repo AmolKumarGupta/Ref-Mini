@@ -7,13 +7,15 @@ use App\Models\MenuSection;
 
 class Sections extends Component
 {
-    // protected $listeners = ['create' => 'create'];
+    protected $listeners = ['refreshMenuSection' => 'refresh'];
     public $menuSection;
-    public Array $create;
 
     public function mount() {
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
-        $this->create['name'] = "";
+    }
+
+    public function refresh() {
+        $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
     }
 
     public function render()

@@ -21,6 +21,7 @@
   <meta property="og:url" content="{{ asset('/') }}" />
   <meta property="og:image" content="" />
   <meta property="og:description" content="A personal CMS" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('public/assets/img/logo.png') }}">
   <link rel="icon" type="image/png" href="{{ asset('public/assets/img/logo.png') }}">
