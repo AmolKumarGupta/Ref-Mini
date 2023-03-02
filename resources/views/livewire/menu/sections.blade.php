@@ -14,8 +14,8 @@
                         <td class="text-capitalize">{{ $section->name }}</td>
                         <td class="w-0">
                             <div class="text-end space-x-2">
-                                <i role="button" class="text-gradient text-info fa fa-xs fa-pen"></i>
-                                <i role="button" class="text-gradient text-danger fa fa-xs fa-trash"></i>
+                                <i onclick="openEditModal(this)" data-edit='{ "id": "{{ $section->id }}", "name": "{{ $section->name }}"}' role="button" class="text-gradient text-info fa fa-xs fa-pen"></i>
+                                <i wire:click="delete('{{ $section->id }}')" role="button" class="text-gradient text-danger fa fa-xs fa-trash"></i>
                             </div>
                         </td>
                     </tr>
