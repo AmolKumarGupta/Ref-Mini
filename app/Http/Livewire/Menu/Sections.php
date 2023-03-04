@@ -30,6 +30,7 @@ class Sections extends Component
     public function delete($id) {
         MenuSection::destroy($id);
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
+        $this->emitTo('menu.menu-item', 'setMenu', '0');
     }
 
     function update($id, $name) {

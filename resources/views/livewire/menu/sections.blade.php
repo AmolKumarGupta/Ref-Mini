@@ -11,7 +11,7 @@
                     @foreach($menuSection as $section)
                     <tr data-id="{{ $section->id }}">
                         <td><i role="button" class="fas fa-grip-vertical"></i></td>
-                        <td class="text-capitalize">{{ $section->name }}</td>
+                        <td class="text-capitalize cursor-pointer" wire:click="$emitTo('menu.menu-item', 'setMenu', '{{ $section->id }}')">{{ $section->name }}</td>
                         <td class="w-0">
                             <div class="text-end space-x-2">
                                 <i onclick="openEditModal(this)" data-edit='{ "id": "{{ $section->id }}", "name": "{{ $section->name }}"}' role="button" class="text-gradient text-info fa fa-xs fa-pen"></i>
