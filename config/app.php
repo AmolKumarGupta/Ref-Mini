@@ -179,6 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Custom Starts Here
+        App\Providers\ViewServiceProvider::class,
     ],
 
     /*
