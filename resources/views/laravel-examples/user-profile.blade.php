@@ -105,6 +105,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="user.github_username" class="form-control-label">Github Username</label>
+                                <div class="@error('user.github_username')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="text" placeholder="username" id="" name="github_username" value="{{ $user->github_username }}">
+                                        @error('github_username')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="about">{{ 'About Me' }}</label>
                         <div class="@error('user.about')border border-danger rounded-3 @enderror">
