@@ -118,6 +118,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="user.gists_token" class="form-control-label">Gists Token</label>
+                                <div class="@error('user.gists_token')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="text" placeholder="" id="" name="gists_token" value="{{ $user->gists_token }}">
+                                        @error('gists_token')
+                                            <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">

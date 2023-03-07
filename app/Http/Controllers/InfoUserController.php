@@ -27,6 +27,7 @@ class InfoUserController extends Controller
             'location' => ['max:70'],
             'about_me'    => ['max:150'],
             'github_username' => ['string'],
+            'gists_token' => ['string'],
         ]);
         if($request->get('email') != Auth::user()->email)
         {
@@ -52,6 +53,7 @@ class InfoUserController extends Controller
             'location' => $attributes['location'],
             'about_me'    => $attributes["about_me"],
             'github_username' => $attributes['github_username'],
+            'gists_token' => $attributes['gists_token'],
         ]);
 
 
