@@ -34,9 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('billing');
 	})->name('billing');
 
-	Route::get('profile', function () {
-		return view('profile');
-	})->name('profile');
+	// Route::get('profile', function () {
+	// 	return view('profile');
+	// })->name('profile');
 
 	Route::get('rtl', function () {
 		return view('rtl');
@@ -63,8 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('sign-up');
 
     Route::get('/logout', [SessionsController::class, 'destroy']);
-	Route::get('/user-profile', [InfoUserController::class, 'create']);
-	Route::post('/user-profile', [InfoUserController::class, 'store']);
+	// Route::get('/user-profile', [InfoUserController::class, 'create']);
+	// Route::post('/user-profile', [InfoUserController::class, 'store']);
     // Route::get('/login', function () {
 	// 	return view('dashboard');
 	// })->name('sign-up');
@@ -76,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::post('/create', [MenuController::class, 'create'])->name('menu.section.create');
 		Route::post('/create-item', [MenuController::class, 'createItem'])->name('menu.item.create');
 	});
+
+	Route::get('/user-profile', [InfoUserController::class, 'create']);
+	Route::post('/user-profile', [InfoUserController::class, 'store']);
 });
 
 

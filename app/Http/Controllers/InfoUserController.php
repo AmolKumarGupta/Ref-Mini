@@ -13,7 +13,8 @@ class InfoUserController extends Controller
 
     public function create()
     {
-        return view('laravel-examples/user-profile');
+        $user = Auth::user();
+        return view('laravel-examples/user-profile', compact('user') );
     }
 
     public function store(Request $request)
@@ -25,6 +26,8 @@ class InfoUserController extends Controller
             'phone'     => ['max:50'],
             'location' => ['max:70'],
             'about_me'    => ['max:150'],
+            'github_username' => ['string'],
+            'gists_token' => ['string'],
         ]);
         if($request->get('email') != Auth::user()->email)
         {
@@ -49,6 +52,8 @@ class InfoUserController extends Controller
             'phone'     => $attributes['phone'],
             'location' => $attributes['location'],
             'about_me'    => $attributes["about_me"],
+            'github_username' => $attributes['github_username'],
+            'gists_token' => $attributes['gists_token'],
         ]);
 
 
