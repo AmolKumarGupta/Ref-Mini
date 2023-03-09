@@ -35,7 +35,7 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="{{ asset('public/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="{{ asset('public/assets/css/soft-ui-dashboard.css?v=1.0.3') }}" rel="stylesheet" />
+  <link id="pagestyle" href="{{ asset('public/assets/css/soft-ui-dashboard.min.css?v=1.0.3') }}" rel="stylesheet" />
   <link href="{{ asset('public/css/app.css') }}" rel="stylesheet" />
   @livewireStyles
 </head>

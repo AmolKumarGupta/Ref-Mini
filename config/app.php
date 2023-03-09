@@ -181,6 +181,7 @@ return [
 
         // Custom Starts Here
         App\Providers\ViewServiceProvider::class,
+        // App\Providers\GithubClientProvider::class,
     ],
 
     /*
