@@ -10,7 +10,7 @@ class GithubClient
     public function repos() {
         $client = new Client();
         $client->authenticate(auth()->user()->gists_token, null, AuthMethod::ACCESS_TOKEN);
-        $repos = $client->currentUser()->repositories('owner', 'updated', 'desc');
+        $repos = $client->currentUser()->repositories('owner', 'pushed', 'desc');
         return $repos;
     }
 
