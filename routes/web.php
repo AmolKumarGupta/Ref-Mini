@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
@@ -26,9 +27,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
-	Route::get('dashboard', function () {
-		return view('dashboard');
-	})->name('dashboard');
+	// Route::get('dashboard', function () {
+	// 	return view('dashboard');
+	// })->name('dashboard');
 
 	Route::get('billing', function () {
 		return view('billing');
@@ -75,6 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', [MenuController::class, 'index']);
 		Route::post('/create', [MenuController::class, 'create'])->name('menu.section.create');
 		Route::post('/create-item', [MenuController::class, 'createItem'])->name('menu.item.create');
+	});
+
+	Route::prefix('dashboard')->group(function () {
+		Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
 	});
 
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
