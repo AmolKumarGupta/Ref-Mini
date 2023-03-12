@@ -27,7 +27,7 @@ class InfoUserController extends Controller
             'location' => ['max:70'],
             'about_me'    => ['max:150'],
             'github_username' => ['string'],
-            'gists_token' => ['string'],
+            'gists_token' => [''],
         ]);
         if($request->get('email') != Auth::user()->email)
         {
