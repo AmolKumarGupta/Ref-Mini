@@ -1,6 +1,8 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+
+<div class="container-fluid py-4">
   @include('dashboard.top-pills')
 
   <div class="row my-4">
@@ -192,6 +194,7 @@
       </div>
     </div>
   </div> --}}
+</div>
   
 @endsection
 @push('dashboard')
