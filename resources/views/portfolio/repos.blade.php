@@ -1,6 +1,26 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('public/css/lang-color.css') }}">
+<style>
+    .bg-gradient-repo {
+        background-image: linear-gradient(310deg,#2152ffb3,#21d4fda6);
+    }
+    .show-toggle .form-check.form-switch{
+        display: inherit;
+        align-items: center;
+    }
+    .show-toggle .form-switch .form-check-input {
+        width: 1.5rem;
+    }
+    .show-toggle .form-switch .form-check-input:checked:after {
+        transform: translateX(10px);
+    }
+    .show-toggle .form-switch .form-check-input:after {
+        width: .7rem;
+        height: .7rem;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row">
 
