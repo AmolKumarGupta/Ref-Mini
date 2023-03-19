@@ -7,11 +7,18 @@ use App\Library\GithubClient;
 
 class Repos extends Component
 {
-
     public $data;
 
     public function mount(GithubClient $client) {
-        $this->data = $client->cache('repos');
+        try {
+            $this->data = $client->cache('repos');
+
+        }catch (\Exception $e) {
+            $this->data = [];
+            if ( $e->getMessage() == 'Bad credentials') {
+                // 
+            }
+        }
     }
 
     public function render()
