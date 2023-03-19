@@ -1,7 +1,7 @@
-<div class="row gy-4">
+<div class="row gy-4" id="repos">
     @foreach ( $data as $repo )
     @php $feat = 3; @endphp
-    <div wire:key="repo-{{ $repo['id'] }}" class="col-sm-3">
+    <div wire:key="{{ $repo['id'] }}" class="col-sm-3">
         <div class="card bg-gradient-repo text-white">
             <div class="card-body  ">
                 <div class="fw-bolder">{{ $repo['name'] }}</div>

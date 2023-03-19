@@ -38,4 +38,6 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('public/assets/js/core/sortable.min.js') }}"></script>
+<script src="{{ asset('public/assets/js/portfolio/repos.js') }}"></script>
 @endsection
