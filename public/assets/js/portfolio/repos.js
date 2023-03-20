@@ -11,5 +11,6 @@ var sortableRepos = Sortable.create(reposContainer, {
                 orderdata.push(child.getAttribute('wire:key'));
             }
         });
+        livewire.emit('sort', JSON.stringify(orderdata));
     },
 });
