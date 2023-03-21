@@ -10,17 +10,53 @@ class Repos extends Component
 {
     protected $listeners = [
         'sort' => 'sort',
+        'setDisplay' => 'setDisplay',
     ];
+
     public $data;
     public $hash;
+    public $repos;
+
+    public function getData(GithubClient $client) {
+        $map = [];
+        $existedDataArray = [];
+
+        $this->hash = [];
+        $this->data = $client->cache('repos');
+        $this->repos = PortfolioRepo::where( 'user_id', auth()->user()->id )->orderBy('sort_by', 'asc')->get();
+        
+        foreach ($this->repos as $r) {
+            $existedDataArray[] = $r->pid;
+            $map[ $r->pid ] = $r->display;
+        }
+
+        $insertBatch = [];
+        $userid = auth()->user()->id;
+        foreach ($this->data as &$d) {
+            $this->hash[ $d['id'] ] = $d['name'];
+
+            if ( in_array($d['id'], $existedDataArray) ) {
+                $d['display'] = $map[ $d['id'] ];
+                
+            }else {
+                $d['display'] = 0;
+                $insertBatch[] = [
+                    "user_id" => $userid,
+                    "pid" => $d[ 'id' ],
+                    "name" => $d[ 'name' ],
+                    "sort_by" => 0
+                ];
+            }
+        }
+
+        if ($insertBatch) {
+            PortfolioRepo::insert( $insertBatch );
+        }
+    }
 
     public function mount(GithubClient $client) {
-        $this->hash = [];
         try {
-            $this->data = $client->cache('repos');
-            foreach ($this->data as $d) {
-                $this->hash[ $d['id'] ] = $d['name'];
-            }
+            $this->getData( $client );
 
         }catch (\Exception $e) {
             $this->data = [];
@@ -81,6 +117,14 @@ class Repos extends Component
 
         if ($insertBatch) {
             PortfolioRepo::insert( $insertBatch );
+        }
+    }
+
+    public function setDisplay($pid, $state) {
+        $repo = PortfolioRepo::where( 'pid', $pid )->first();
+        if ($repo) {
+            $repo->display = (int) $state;
+            $repo->save();
         }
     }
 }

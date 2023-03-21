@@ -47,7 +47,7 @@
                 <div class="mt-1 text-xs d-flex align-items-center gap-1 show-toggle">
                     Show in portfolio
                     <div class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" {{ $repo['display'] ? "checked" : "" }} onchange="toggleDisplay(this, '{{ $repo['id'] }}')">
                     </div>
                 </div>
 

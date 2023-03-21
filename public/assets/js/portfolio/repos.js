@@ -14,3 +14,7 @@ var sortableRepos = Sortable.create(reposContainer, {
         livewire.emit('sort', JSON.stringify(orderdata));
     },
 });
+
+function toggleDisplay(that, id) {
+    livewire.emit('setDisplay', id, that.checked);
+}
