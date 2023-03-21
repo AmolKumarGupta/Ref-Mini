@@ -82,6 +82,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
 	});
 
+	Route::prefix('portfolio')->group(function() {
+		Route::get( '/repos', function () {
+			return view('portfolio.repos');
+		});
+	});
+
 	Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
 });

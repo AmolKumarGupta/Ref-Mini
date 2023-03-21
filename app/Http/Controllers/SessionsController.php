@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Cache;
 
 class SessionsController extends Controller
 {
@@ -35,7 +35,7 @@ class SessionsController extends Controller
     {
 
         Auth::logout();
-
+        Cache::flush();
         return redirect('/login')->with(['success'=>'You\'ve been logged out.']);
     }
 }

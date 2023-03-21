@@ -1,15 +1,18 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
-<div class="row gap-3 gap-lg-0">
-    <!-- Menu Section -->
-    <div class="col-lg-4">
-        @livewire('menu.sections')
-    </div>
 
-    <!-- Menu Item -->
-    <div class="col-lg-8">
-        @livewire('menu.menu-item')
+<div class="container-fluid py-4">
+    <div class="row gap-3 gap-lg-0">
+        <!-- Menu Section -->
+        <div class="col-lg-4">
+            @livewire('menu.sections')
+        </div>
+
+        <!-- Menu Item -->
+        <div class="col-lg-8">
+            @livewire('menu.menu-item')
+        </div>
     </div>
 </div>
 
