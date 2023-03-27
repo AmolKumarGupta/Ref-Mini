@@ -1,7 +1,16 @@
 <?php
 return [
+
+    /**
+     * @var string $prefix 
+     * The prefix of gist's files
+     */
+    "prefix" => "refmini_",
+
     "gists" => [
-        "repos_file_name" => "refminiRepoList"
-    ]
+        "repolist" => "repolist",
+    ],
+
+    "description" => "refmini generated data",
 ];
 ?>

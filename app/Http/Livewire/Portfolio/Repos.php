@@ -11,6 +11,7 @@ class Repos extends Component
     protected $listeners = [
         'sort' => 'sort',
         'setDisplay' => 'setDisplay',
+        'syncrepos' => 'syncRepos',
     ];
 
     public $data;
@@ -126,5 +127,16 @@ class Repos extends Component
             $repo->display = (int) $state;
             $repo->save();
         }
+    }
+
+    public function syncRepos(GithubClient $client) {
+        $repos = PortfolioRepo::where('display', 1)->orderBy('sort_by', 'ASC')->get();
+
+        $data = [];
+        foreach ($repos as $repo) {
+            $data[] = $repo->pid;
+        }
+
+        $client->update('repolist', $data);
     }
 }

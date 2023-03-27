@@ -16,13 +16,16 @@ return new class extends Migration
         Schema::create('gists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('fk_user_id')->nullable();
+            $table->string('file');
             $table->string('gist_id');
-            $table->tinyInteger('status')->dafault(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->foreign('fk_user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->index('file');
         });
     }
 

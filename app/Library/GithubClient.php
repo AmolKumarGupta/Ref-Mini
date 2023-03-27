@@ -3,6 +3,7 @@ namespace App\Library;
 
 use Github\Client;
 use Github\AuthMethod;
+use App\Models\Gist;
 use Illuminate\Support\Facades\Cache;
 
 class GithubClient 
@@ -10,6 +11,10 @@ class GithubClient
     public Client $client;
 
     public function auth() {
+        if (isset($this->client) && $this->client) {
+            return $this->client;    
+        }
+
         $this->client = new Client();
         $token = auth()->user()->gists_token;
         if ($token == null) {
@@ -17,6 +22,45 @@ class GithubClient
         }
         $this->client->authenticate($token, null, AuthMethod::ACCESS_TOKEN);
         return $this->client;
+    }
+
+    private function createGist($file): Gist|null {
+        $dict = config('github.gists');
+        if (! array_key_exists($file, $dict)) {
+            return null;
+        }
+
+        $fileArray = [];
+        $fileArray[ config('github.prefix').$file.'.json' ] = ['content' => '[]'];
+
+        $data = array(
+            'files' => $fileArray,
+            'public' => true,
+            'description' => config('github.description')
+        );
+        $gist = $this->auth()->api('gists')->create($data);
+
+        $model = new Gist;
+        $model->fk_user_id = auth()->user()->id;
+        $model->file = $file;
+        $model->gist_id = $gist['id'];
+        $model->save();
+
+        return $model;
+    }
+
+    public function gist($file): Gist|null {
+        $dict = config('github.gists');
+        if (! array_key_exists($file, $dict)) {
+            return null;
+        }
+
+        $gist = Gist::where('file', $file)->where('fk_user_id', auth()->user()->id)->first();
+        if ($gist) {
+            return $gist;
+        }
+
+        return $this->createGist($file);
     }
 
     public function repos() {
@@ -36,20 +80,16 @@ class GithubClient
         });
     }
 
-    public function gists() {
-        $this->auth();
-        // $gists = $this->client->api('gists')->show('4646bbbbf48ff59aab45b490d65c99bb');
+    public function update($file, $content) {
+        $gist = $this->gist($file);
+
         $data = array(
             'files' => array(
-                'test.json' => array(
-                    'content' => json_encode(["status" => 'true'])
+                config('github.prefix').$file.'.json' => array(
+                    'content' => json_encode($content)
                 ),
             ),
-            'public' => true,
-            'description' => 'This is an test'
         );
-        
-        // $gist = $this->client->api('gists')->create($data);
-        dd( $gist );
+        $gistData = $this->auth()->api('gists')->update($gist->gist_id, $data);
     }
 }
