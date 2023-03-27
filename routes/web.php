@@ -92,6 +92,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/user-profile', [InfoUserController::class, 'store']);
 });
 
+/* Route::get('test', function () {
+    (new \App\Library\GithubClient)->gists();
+}); */
 
 
 Route::group(['middleware' => 'guest'], function () {

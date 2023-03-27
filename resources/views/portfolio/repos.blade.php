@@ -26,7 +26,10 @@
 
         <div class="card card-body blur shadow-blur">
             <div class="row">
-                <div class="col">@github's Repositories</div>
+                <div class="col">
+                    @github's Repositories
+                    <button class="btn btn-sm bg-gradient-success mb-0 float-end" onclick="Livewire.emit('syncrepos')">Sync</button>
+                </div>
             </div>
         </div>
         
