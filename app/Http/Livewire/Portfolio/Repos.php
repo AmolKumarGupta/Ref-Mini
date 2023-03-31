@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Portfolio;
 
-use Livewire\Component;
 use App\Library\GithubClient;
 use App\Models\PortfolioRepo;
+use Livewire\Component;
 
 class Repos extends Component
 {
@@ -18,96 +18,97 @@ class Repos extends Component
     public $hash;
     public $repos;
 
-    public function getData(GithubClient $client) {
+    public function getData(GithubClient $client)
+    {
         $map = [];
         $existedDataArray = [];
 
         $this->hash = [];
         $this->data = $client->cache('repos');
-        $this->repos = PortfolioRepo::where( 'user_id', auth()->user()->id )->orderBy('sort_by', 'asc')->get();
-        
+        $this->repos = PortfolioRepo::where('user_id', auth()->user()->id)->orderBy('sort_by', 'asc')->get();
+
         foreach ($this->repos as $r) {
             $existedDataArray[] = $r->pid;
-            $map[ $r->pid ] = $r->display;
+            $map[$r->pid] = $r->display;
         }
 
         $insertBatch = [];
         $userid = auth()->user()->id;
         foreach ($this->data as &$d) {
-            $this->hash[ $d['id'] ] = $d['name'];
+            $this->hash[$d['id']] = $d['name'];
 
-            if ( in_array($d['id'], $existedDataArray) ) {
-                $d['display'] = $map[ $d['id'] ];
-                
-            }else {
+            if (in_array($d['id'], $existedDataArray)) {
+                $d['display'] = $map[$d['id']];
+            } else {
                 $d['display'] = 0;
                 $insertBatch[] = [
-                    "user_id" => $userid,
-                    "pid" => $d[ 'id' ],
-                    "name" => $d[ 'name' ],
-                    "sort_by" => 0
+                    'user_id' => $userid,
+                    'pid' => $d['id'],
+                    'name' => $d['name'],
+                    'sort_by' => 0,
                 ];
             }
         }
 
         if ($insertBatch) {
-            PortfolioRepo::insert( $insertBatch );
+            PortfolioRepo::insert($insertBatch);
         }
     }
 
-    public function mount(GithubClient $client) {
+    public function mount(GithubClient $client)
+    {
         try {
-            $this->getData( $client );
-
-        }catch (\Exception $e) {
+            $this->getData($client);
+        } catch (\Exception $e) {
             $this->data = [];
-            if ( $e->getMessage() == 'Bad credentials') {
-                // 
+            if ($e->getMessage() == 'Bad credentials') {
+                //
             }
         }
-
-
     }
 
     public function render()
     {
         $this->sortedData();
+
         return view('livewire.portfolio.repos');
     }
 
-    public function sortedData () {
-        $repos = PortfolioRepo::where( 'user_id', auth()->user()->id )->orderBy('sort_by', 'asc')->get();
+    public function sortedData()
+    {
+        $repos = PortfolioRepo::where('user_id', auth()->user()->id)->orderBy('sort_by', 'asc')->get();
         $data = $this->data;
 
         $hash = [];
         foreach ($data as $d) {
-            $hash[ $d['id'] ] = $d;
+            $hash[$d['id']] = $d;
         }
 
         $sortedData = [];
-        foreach ( $repos as $r ) {
-            $sortedData[] = $hash[ $r->pid ];
-            unset( $hash[ $r->pid ] );
+        foreach ($repos as $r) {
+            $sortedData[] = $hash[$r->pid];
+            unset($hash[$r->pid]);
         }
-        foreach ( $hash as $h ) {
+        foreach ($hash as $h) {
             $sortedData[] = $h;
         }
 
         $this->data = $sortedData;
     }
 
-    public function sort ($orderdata) {
+    public function sort($orderdata)
+    {
         $orderdata = json_decode($orderdata, true);
 
         $insertBatch = [];
-        foreach ( $orderdata as $idx=>$data ) {
-            $repo = PortfolioRepo::where('pid', $data)->where( 'user_id', auth()->user()->id )->first();
+        foreach ($orderdata as $idx=>$data) {
+            $repo = PortfolioRepo::where('pid', $data)->where('user_id', auth()->user()->id)->first();
             if ($repo == null) {
                 $insertBatch[] = [
-                    "user_id" => auth()->user()->id,
-                    "pid" => $data, 
-                    "name" => $this->hash[ $data ],
-                    "sort_by" => $idx
+                    'user_id' => auth()->user()->id,
+                    'pid' => $data,
+                    'name' => $this->hash[$data],
+                    'sort_by' => $idx,
                 ];
                 continue;
             }
@@ -117,19 +118,21 @@ class Repos extends Component
         }
 
         if ($insertBatch) {
-            PortfolioRepo::insert( $insertBatch );
+            PortfolioRepo::insert($insertBatch);
         }
     }
 
-    public function setDisplay($pid, $state) {
-        $repo = PortfolioRepo::where( 'pid', $pid )->first();
+    public function setDisplay($pid, $state)
+    {
+        $repo = PortfolioRepo::where('pid', $pid)->first();
         if ($repo) {
             $repo->display = (int) $state;
             $repo->save();
         }
     }
 
-    public function syncRepos(GithubClient $client) {
+    public function syncRepos(GithubClient $client)
+    {
         $repos = PortfolioRepo::where('display', 1)->orderBy('sort_by', 'ASC')->get();
 
         $data = [];

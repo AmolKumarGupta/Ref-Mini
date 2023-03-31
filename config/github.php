@@ -1,16 +1,16 @@
 <?php
+
 return [
 
-    /**
-     * @var string $prefix 
+    /*
+     * @var string $prefix
      * The prefix of gist's files
      */
-    "prefix" => "refmini_",
+    'prefix' => 'refmini_',
 
-    "gists" => [
-        "repolist" => "repolist",
+    'gists' => [
+        'repolist' => 'repolist',
     ],
 
-    "description" => "refmini generated data",
+    'description' => 'refmini generated data',
 ];
-?>

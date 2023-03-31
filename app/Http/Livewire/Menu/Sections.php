@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Menu;
 
-use Livewire\Component;
 use App\Models\MenuSection;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
 
 class Sections extends Component
 {
@@ -14,34 +14,38 @@ class Sections extends Component
     ];
     public $menuSection;
 
-    public function mount() {
+    public function mount()
+    {
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
     }
-    
+
     public function render()
     {
         return view('livewire.menu.sections');
     }
-    
-    public function refresh() {
+
+    public function refresh()
+    {
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         MenuSection::destroy($id);
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
         $this->emitTo('menu.menu-item', 'setMenu', '0');
     }
 
-    function update($id, $name) {
+    public function update($id, $name)
+    {
         $validation = Validator::make(
-            [ 'name' => $name ], 
-            [ 'name' =>'required' ]
+            ['name' => $name],
+            ['name' =>'required']
         );
 
         if ($validation->fails()) {
             $errorMsg = $validation->getMessageBag();
-            $this->dispatchBrowserEvent('focusError',['err' => current($errorMsg->getMessages())]);
+            $this->dispatchBrowserEvent('focusError', ['err' => current($errorMsg->getMessages())]);
             $validation->validate();
         }
 
@@ -51,8 +55,8 @@ class Sections extends Component
             $section->save();
             $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
             $this->dispatchBrowserEvent('sectionUpdated', []);
-        }catch(\Exception $e) {
-            // 
+        } catch(\Exception $e) {
+            //
         }
     }
 }

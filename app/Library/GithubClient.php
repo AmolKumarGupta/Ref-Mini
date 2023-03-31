@@ -1,43 +1,47 @@
 <?php
+
 namespace App\Library;
 
-use Github\Client;
-use Github\AuthMethod;
 use App\Models\Gist;
+use Github\AuthMethod;
+use Github\Client;
 use Illuminate\Support\Facades\Cache;
 
-class GithubClient 
+class GithubClient
 {
     public Client $client;
 
-    public function auth() {
+    public function auth()
+    {
         if (isset($this->client) && $this->client) {
-            return $this->client;    
+            return $this->client;
         }
 
         $this->client = new Client();
         $token = auth()->user()->gists_token;
         if ($token == null) {
-            $token = "";
+            $token = '';
         }
         $this->client->authenticate($token, null, AuthMethod::ACCESS_TOKEN);
+
         return $this->client;
     }
 
-    private function createGist($file): Gist|null {
+    private function createGist($file): Gist|null
+    {
         $dict = config('github.gists');
-        if (! array_key_exists($file, $dict)) {
+        if (!array_key_exists($file, $dict)) {
             return null;
         }
 
         $fileArray = [];
-        $fileArray[ config('github.prefix').$file.'.json' ] = ['content' => '[]'];
+        $fileArray[config('github.prefix') . $file . '.json'] = ['content' => '[]'];
 
-        $data = array(
+        $data = [
             'files' => $fileArray,
             'public' => true,
-            'description' => config('github.description')
-        );
+            'description' => config('github.description'),
+        ];
         $gist = $this->auth()->api('gists')->create($data);
 
         $model = new Gist;
@@ -49,9 +53,10 @@ class GithubClient
         return $model;
     }
 
-    public function gist($file): Gist|null {
+    public function gist($file): Gist|null
+    {
         $dict = config('github.gists');
-        if (! array_key_exists($file, $dict)) {
+        if (!array_key_exists($file, $dict)) {
             return null;
         }
 
@@ -63,33 +68,37 @@ class GithubClient
         return $this->createGist($file);
     }
 
-    public function repos() {
+    public function repos()
+    {
         $client = new Client();
         $token = auth()->user()->gists_token;
         if ($token == null) {
-            $token = "";
+            $token = '';
         }
         $client->authenticate($token, null, AuthMethod::ACCESS_TOKEN);
         $repos = $client->currentUser()->repositories('owner', 'pushed', 'desc');
+
         return $repos;
     }
 
-    public function cache($func) {
-        return Cache::remember($func, 3600, function () use($func) {
+    public function cache($func)
+    {
+        return Cache::remember($func, 3600, function () use ($func) {
             return $this->$func();
         });
     }
 
-    public function update($file, $content) {
+    public function update($file, $content)
+    {
         $gist = $this->gist($file);
 
-        $data = array(
-            'files' => array(
-                config('github.prefix').$file.'.json' => array(
-                    'content' => json_encode($content)
-                ),
-            ),
-        );
+        $data = [
+            'files' => [
+                config('github.prefix') . $file . '.json' => [
+                    'content' => json_encode($content),
+                ],
+            ],
+        ];
         $gistData = $this->auth()->api('gists')->update($gist->gist_id, $data);
     }
 }

@@ -9,40 +9,42 @@ use Illuminate\Support\Facades\Validator;
 
 class MenuController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('menu.index');
     }
 
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json( $validator->errors() , 400);
+            return response()->json($validator->errors(), 400);
         }
 
         try {
             $section = new MenuSection;
             $section->name = $request->name;
             $section->save();
-            
-            return response()->json($request->name);
 
-        }catch (\Exception $e) {
-            return response()->json("Something went wrong", 500);
+            return response()->json($request->name);
+        } catch (\Exception $e) {
+            return response()->json('Something went wrong', 500);
         }
     }
 
-    public function createItem(Request $request) {
+    public function createItem(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' =>'required',
             'url' =>'required',
-            'icon' =>'required'
+            'icon' =>'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json( $validator->errors(), 400);
+            return response()->json($validator->errors(), 400);
         }
 
         try {
@@ -50,13 +52,12 @@ class MenuController extends Controller
             $item->fk_section_id = $request->section_id;
             $item->name = $request->name;
             $item->url = $request->url;
-            $item->icon = 'fa-'.$request->icon;
+            $item->icon = 'fa-' . $request->icon;
             $item->save();
 
             return response()->json($request->name);
-
-        }catch (\Exception $e) {
-            return response()->json("Something went wrong", 500);
+        } catch (\Exception $e) {
+            return response()->json('Something went wrong', 500);
         }
     }
 }
