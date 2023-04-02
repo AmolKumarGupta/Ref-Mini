@@ -39,7 +39,9 @@ class MenuItem extends Component
 
     public function delete($id)
     {
+        $item = Menu::find($id);
         Menu::destroy($id);
+        activity()->on($item)->withProperties($item->attributesToArray())->log(':subject:name is deleted');
         $this->setMenuItems();
     }
 
@@ -72,7 +74,9 @@ class MenuItem extends Component
             $item->name = $arrData['name'];
             $item->url = $arrData['url'];
             $item->icon = 'fa-' . $arrData['icon'];
+            $prop = $item->logProp();
             $item->save();
+            activity()->on($item)->withProperties($prop)->log(':subject.name is updated');
 
             $this->setMenuItems();
             $this->dispatchBrowserEvent('itemUpdated', []);

@@ -29,6 +29,8 @@ class MenuController extends Controller
             $section->name = $request->name;
             $section->save();
 
+            activity()->on($section)->log('new menu section is created');
+
             return response()->json($request->name);
         } catch (\Exception $e) {
             return response()->json('Something went wrong', 500);
@@ -54,6 +56,7 @@ class MenuController extends Controller
             $item->url = $request->url;
             $item->icon = 'fa-' . $request->icon;
             $item->save();
+            activity()->on($item)->log('new menu-item is created');
 
             return response()->json($request->name);
         } catch (\Exception $e) {
