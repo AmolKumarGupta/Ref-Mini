@@ -100,5 +100,6 @@ class GithubClient
             ],
         ];
         $gistData = $this->auth()->api('gists')->update($gist->gist_id, $data);
+        activity()->on($gist)->log(':causer.name synced the repositories');
     }
 }

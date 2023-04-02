@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -37,8 +36,8 @@ class InfoUserController extends Controller
             ]);
         }
 
-        User::where('id', Auth::user()->id)
-        ->update([
+        $user = auth()->user();
+        $user->fill([
             'name'    => $attributes['name'],
             'email' => $attribute['email'],
             'phone'     => $attributes['phone'],
@@ -47,6 +46,9 @@ class InfoUserController extends Controller
             'github_username' => $attributes['github_username'],
             'gists_token' => $attributes['gists_token'],
         ]);
+        $properties = $user->logProp();
+        $user->save();
+        activity()->on($user)->withProperties($properties)->log(':subject.name updated the profile');
 
         return redirect('/user-profile')->with('success', 'Profile updated successfully');
     }

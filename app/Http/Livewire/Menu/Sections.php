@@ -31,7 +31,10 @@ class Sections extends Component
 
     public function delete($id)
     {
+        $item = MenuSection::find($id);
         MenuSection::destroy($id);
+        activity()->on($item)->withProperties($item->attributesToArray())->log(':subject.name is deleted');
+
         $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
         $this->emitTo('menu.menu-item', 'setMenu', '0');
     }
@@ -52,7 +55,10 @@ class Sections extends Component
         try {
             $section = MenuSection::find($id);
             $section->name = $name;
+            $props = $section->logProp();
             $section->save();
+            activity()->on($section)->withProperties($props)->log(':subject.name is updated');
+
             $this->menuSection = MenuSection::orderBy('order', 'ASC')->get();
             $this->dispatchBrowserEvent('sectionUpdated', []);
         } catch(\Exception $e) {

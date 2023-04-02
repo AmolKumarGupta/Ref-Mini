@@ -120,6 +120,10 @@ class Repos extends Component
         if ($insertBatch) {
             PortfolioRepo::insert($insertBatch);
         }
+
+        $activity = activity(config('log.portfolio'))->withProperties($orderdata)->log(':causer.name sorted the portfolio repos');
+        $activity->subject_type = "App\Models\PortfolioRepo";
+        $activity->save();
     }
 
     public function setDisplay($pid, $state)
@@ -127,7 +131,9 @@ class Repos extends Component
         $repo = PortfolioRepo::where('pid', $pid)->first();
         if ($repo) {
             $repo->display = (int) $state;
+            $props = $repo->logProp();
             $repo->save();
+            activity(config('log.portfolio'))->on($repo)->withProperties($props)->log(':causer.name updated the :subject.name\'s settings');
         }
     }
 
