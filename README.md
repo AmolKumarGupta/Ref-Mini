@@ -1,8 +1,13 @@
 # Refmini CMS
+A personal cms that use gist as a storage for online purposes
 
-## Features
+1. Menu Management
+2. Github Integration
+3. Can select repos for Showcase
 
-- Menu Management
+### Requirements
+
+Need Github token with read:user and gists scope.
 
 ## Demo
 
