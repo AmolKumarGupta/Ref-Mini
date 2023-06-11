@@ -8,6 +8,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\HabitTrackerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,6 +87,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/user-profile', [InfoUserController::class, 'create']);
     Route::post('/user-profile', [InfoUserController::class, 'store']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::prefix('habit-tracker')->group(function () {
+        Route::get('/', [HabitTrackerController::class, 'index']);
+    });
 });
 
 /* Route::get('test', function () {
