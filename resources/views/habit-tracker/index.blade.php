@@ -6,7 +6,13 @@
         <div class="card">
 
             <div class="card-header pb-0">
-                <h5>Dashboard for Tracker</h5>
+                <h5>
+                    Dashboard for Tracker
+                    <div data-bs-toggle="modal" data-bs-target="#modal-track" role="button" class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center" style="line-height: 1;">
+                        <i class="fa fa-xs fa-plus" style="top: -25%" aria-hidden="true"></i>
+                    </div>
+                </h5>
+
             </div>
 
             <div class="card-body">
@@ -53,13 +59,20 @@
     </div>
 </div>
 
+@livewire('habit-track.modals.track')
 
 @endsection
 
 @section('scripts')
 <script>
+    let trackModal = new bootstrap.Modal('#modal-track');
+
     document.addEventListener('DOMContentLoaded', function() {
         let table = new simpleDatatables.DataTable('#track');
     });
+
+    window.livewire.on('closeModal', function() {
+        trackModal.hide();
+    })
 </script>
 @endsection
