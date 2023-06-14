@@ -1,6 +1,19 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+<style>
+    .hide-scroll::-webkit-scrollbar {
+        width: 0 !important;
+    }
+
+    .hide-scroll {
+        -ms-overflow-style: none;
+    }
+
+    .hide-scroll {
+        scrollbar-width: none;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row gap-3 gap-lg-0">
         <div class="card">
@@ -16,7 +29,7 @@
             </div>
 
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive hide-scroll">
                     <table class="table" id="track">
                         <thead>
                             <tr>
