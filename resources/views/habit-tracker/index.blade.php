@@ -1,6 +1,19 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+<style>
+    .hide-scroll::-webkit-scrollbar {
+        width: 0 !important;
+    }
+
+    .hide-scroll {
+        -ms-overflow-style: none;
+    }
+
+    .hide-scroll {
+        scrollbar-width: none;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row gap-3 gap-lg-0">
         <div class="card">
@@ -16,7 +29,7 @@
             </div>
 
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="table-responsive hide-scroll">
                     <table class="table" id="track">
                         <thead>
                             <tr>
@@ -28,28 +41,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>1</th>
-                                <th>Exercise</th>
-                                <th>exercise</th>
-                                <th>15 mins</th>
-                                <th>10 May, 10:00am</th>
-                            </tr>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Time</th>
-                                <th>Created At</th>
-                            </tr>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Categories</th>
-                                <th>Time</th>
-                                <th>Created At</th>
-                            </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -65,14 +56,7 @@
 
 @section('scripts')
 <script>
-    let trackModal = new bootstrap.Modal('#modal-track');
-
-    document.addEventListener('DOMContentLoaded', function() {
-        let table = new simpleDatatables.DataTable('#track');
-    });
-
-    window.livewire.on('closeModal', function() {
-        trackModal.hide();
-    })
+    const AJAX_URL = '{{ route("habit-tracker.ajax") }}';
 </script>
+<script src="{{ asset('public/assets/js/habittrack.js') }}"></script>
 @endsection
