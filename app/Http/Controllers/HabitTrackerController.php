@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HabitTrack;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HabitTrackerController extends Controller
@@ -9,5 +11,47 @@ class HabitTrackerController extends Controller
     public function index()
     {
         return view('habit-tracker.index');
+    }
+
+    public function ajax(Request $request)
+    {
+        $draw = $request->draw;
+        $columns = $request->columns;
+        $orderBy = $columns[$request->order[0]['column']]['name'] ?? 'id';
+        $orderDir = $request->order[0]['dir'];
+        $start = $request->start;
+        $length = $request->length;
+        $search = $request->search['value'];
+
+        $totalRecords = HabitTrack::count();
+        $totalRecordsWithFilters = HabitTrack::where(function ($query) use ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        })
+            ->count();
+
+        $records = HabitTrack::orderBy($orderBy, $orderDir)
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+
+        if ($start != 0) {
+            $records->skip($start);
+        }
+        $records = $records->take($length);
+        $records = $records->get();
+        $records = $records->toArray();
+
+        $data = [];
+        foreach ($records as $record) {
+            $record['formattedDate'] = Carbon::parse($record['date'])->format('d M, Y');
+            $data[] = $record;
+        }
+
+        return response()->json([
+            "draw" => $draw,
+            "recordsTotal" => $totalRecords,
+            "recordsFiltered" => $totalRecordsWithFilters,
+            "data" => $data
+        ]);
     }
 }

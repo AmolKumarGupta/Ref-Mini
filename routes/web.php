@@ -92,6 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::prefix('habit-tracker')->group(function () {
         Route::get('/', [HabitTrackerController::class, 'index']);
+        Route::get('/ajax', [HabitTrackerController::class, 'ajax'])->name('habit-tracker.ajax');
     });
 });
 

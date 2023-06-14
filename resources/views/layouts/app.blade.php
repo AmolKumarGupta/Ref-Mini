@@ -34,6 +34,7 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="{{ asset('public/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('public/assets/css/soft-ui-dashboard.min.css?v=1.0.3') }}" rel="stylesheet" />
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet" />
@@ -54,13 +55,15 @@
     </div>
     @endif
     <!--   Core JS Files   -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="{{ asset('public/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/plugins/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/plugins/chartjs.min.js') }}"></script>
-    <script src="{{ asset('public/assets/js/plugins/datatables.js') }}"></script>
+    <!-- <script src="{{ asset('public/assets/js/plugins/datatables.js') }}"></script> -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     @stack('rtl')
     @stack('dashboard')
     <script>
