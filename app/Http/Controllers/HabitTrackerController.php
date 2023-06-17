@@ -31,7 +31,7 @@ class HabitTrackerController extends Controller
         })
             ->count();
 
-        $records = HabitTrack::orderBy($orderBy, $orderDir)
+        $records = HabitTrack::with('category')->orderBy($orderBy, $orderDir)
             ->where(function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             });

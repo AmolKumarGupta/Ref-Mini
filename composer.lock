@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6050ebcbb1e47fa8ecbb6615ad8684d9",
+    "content-hash": "37352dca1fd283c49c624f4bd6e13714",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2017,6 +2017,50 @@
                 }
             ],
             "time": "2023-01-29T23:45:02+00:00"
+        },
+        {
+            "name": "mistic100/randomcolor",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mistic100/RandomColor.php.git",
+                "reference": "527635e9d632ea216c91baf1ffb51f4c81d763de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mistic100/RandomColor.php/zipball/527635e9d632ea216c91baf1ffb51f4c81d763de",
+                "reference": "527635e9d632ea216c91baf1ffb51f4c81d763de",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Colors\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Damien \"Mistic\" Sorel",
+                    "email": "contact@git.strangeplanet.fr",
+                    "homepage": "http://www.strangeplanet.fr"
+                }
+            ],
+            "description": "Generate attractive random colors",
+            "homepage": "https://github.com/mistic100/RandomColor.php",
+            "keywords": [
+                "color",
+                "generator",
+                "random"
+            ],
+            "support": {
+                "issues": "https://github.com/mistic100/RandomColor.php/issues",
+                "source": "https://github.com/mistic100/RandomColor.php/tree/1.0.6"
+            },
+            "time": "2022-10-13T11:40:28+00:00"
         },
         {
             "name": "monolog/monolog",
