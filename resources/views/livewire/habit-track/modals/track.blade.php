@@ -25,8 +25,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="time">Time</label>
-                                <input wire:model.defer="formdata.time" type="number" name="time" class="form-control" placeholder="">
+                                <label for="time">Total Time (in hrs and mins)</label>
+                                <input wire:model.defer="formdata.time" type="time" name="time" class="form-control" placeholder="">
                                 @error('formdata.time') <small data-error="url" class="text-danger">{{ $message }}</small> @enderror
                             </div>
 

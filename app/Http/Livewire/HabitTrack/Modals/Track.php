@@ -34,8 +34,12 @@ class Track extends Component
     {
         $this->modalOpen = true;
 
-        // $this->formdata->time = 120;
-        // $this->formdata->date = '2023-05-09';
+        if ($this->formdata->time) {
+            $timeString = explode(':', (string) $this->formdata->time);
+            $hrs = (int) $timeString[0] * 3600;
+            $mins = (int) $timeString[1] * 60;
+            $this->formdata->time = $hrs + $mins;
+        }
 
         $this->validate();
         $this->formdata->save();
