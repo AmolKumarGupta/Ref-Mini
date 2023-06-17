@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     return `<div class="badge badge-success">exercise</div>`
                 }
             },
-            { data: 'time' },
+            {
+                data: 'time', render: function(data, type, row, meta) {
+                    return row.formattedTime
+                }
+            },
             { data: 'date', render: (data, type, row) => row.formattedDate }
         ]
     })
