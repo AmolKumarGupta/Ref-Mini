@@ -14,7 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
             { data: 'name' },
             {
                 data: 'id', render: function(data, type, row, meta) {
-                    return `<div class="badge badge-success">exercise</div>`
+                    if (!row.category) {
+                        return '';
+                    }
+
+                    return `<div
+                    class="badge badge-success"
+                    style="color: ${row.category.color}; background-color: ${row.category.bgcolor};"
+                    >${row.category.name}</div>`
                 }
             },
             {
