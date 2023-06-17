@@ -6,6 +6,7 @@ use App\Models\HabitTrack;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HabitTrackerController extends Controller
 {
@@ -18,7 +19,7 @@ class HabitTrackerController extends Controller
     {
         $draw = $request->draw;
         $columns = $request->columns;
-        $orderBy = $columns[$request->order[0]['column']]['name'] ?? 'id';
+        $orderBy = $columns[$request->order[0]['column']]['data'] ?? 'id';
         $orderDir = $request->order[0]['dir'];
         $start = $request->start;
         $length = $request->length;
