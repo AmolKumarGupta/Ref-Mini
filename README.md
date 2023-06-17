@@ -1,11 +1,12 @@
 # Refmini CMS
-A personal cms that use gist as a storage for online purposes
+A Personal Website is a versatile platform that allows you to manage your data. It comes equipped with a habit tracker tool to help me stay on top of my daily goals and routines. It allows you to showcase your repositories on your website 
 
 1. Menu Management
 2. Github Integration
 3. Can select repos for Showcase
+4. Habit Tracker
 
-### Requirements
+### Requirements For Github (Optional)
 
 Need Github token with read:user and gists scope.
 
