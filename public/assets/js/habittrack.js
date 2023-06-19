@@ -4,6 +4,10 @@ window.livewire.on('closeModal', function() {
     trackModal.hide();
 })
 
+window.livewire.on('reloadTable', function() {
+    $('#track').DataTable().ajax.reload();
+})
+
 document.addEventListener('DOMContentLoaded', function() {
     $('#track').DataTable({
         ajax: AJAX_URL,

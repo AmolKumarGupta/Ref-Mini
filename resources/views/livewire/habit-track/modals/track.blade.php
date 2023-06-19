@@ -25,6 +25,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="category">Category</label>
+                                <select id="category-select" wire:model.defer="formdata.category_id" name="category" class="form-select text-capitalize">
+                                    @foreach($categories as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('formdata.category_id') <small data-error="url" class="text-danger">Required</small> @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label for="time">Total Time (in hrs and mins)</label>
                                 <input wire:model.defer="formdata.time" type="time" name="time" class="form-control" placeholder="">
                                 @error('formdata.time') <small data-error="url" class="text-danger">{{ $message }}</small> @enderror

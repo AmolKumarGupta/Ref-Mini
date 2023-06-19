@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\HabitTrack\Modals;
 
+use App\Models\Category;
+use App\Models\HabitCategory;
 use App\Models\HabitTrack;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
@@ -16,7 +18,8 @@ class Track extends Component
         'formdata.name' => 'required|string|max:100',
         'formdata.description' => 'required|string',
         'formdata.time' => 'required',
-        'formdata.date' => 'required'
+        'formdata.date' => 'required',
+        'formdata.category_id' => 'numeric'
     ];
 
     public function mount()
@@ -27,7 +30,8 @@ class Track extends Component
 
     public function render()
     {
-        return view('livewire.habit-track.modals.track');
+        $categories = Category::get();
+        return view('livewire.habit-track.modals.track', compact('categories'));
     }
 
     public function save()
@@ -42,7 +46,19 @@ class Track extends Component
         }
 
         $this->validate();
-        $this->formdata->save();
+        $category_id = $this->formdata->category_id;
+        unset($this->formdata->category_id);
+
+        if ($this->formdata->save()) {
+            $habitCategory = HabitCategory::where('habit_track_id', $this->formdata->id)->first();
+            if ($habitCategory == null) {
+                $habitCategory = new HabitCategory;
+                $habitCategory->habit_track_id = $this->formdata->id;
+            }
+            $habitCategory->category_id = $category_id;
+            $habitCategory->save();
+        }
         $this->emit('closeModal');
+        $this->emit('reloadTable');
     }
 }

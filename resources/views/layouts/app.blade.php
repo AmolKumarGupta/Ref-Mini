@@ -37,6 +37,7 @@
     <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('public/assets/css/soft-ui-dashboard.min.css?v=1.0.3') }}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet" />
     @livewireStyles
 </head>
@@ -64,6 +65,7 @@
     <script src="{{ asset('public/assets/js/plugins/chartjs.min.js') }}"></script>
     <!-- <script src="{{ asset('public/assets/js/plugins/datatables.js') }}"></script> -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @stack('rtl')
     @stack('dashboard')
     <script>
