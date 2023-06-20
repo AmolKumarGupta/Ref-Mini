@@ -43,6 +43,7 @@ class HabitTrackerController extends Controller
         $records = $records->get();
         $records = $records->toArray();
 
+        // dd($records);
         $data = [];
         foreach ($records as $record) {
             $record['formattedDate'] = Carbon::parse($record['date'])->format('d M, Y');

@@ -9,6 +9,13 @@ class HabitTrack extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'time',
+        'date',
+    ];
+
     public function habit_category()
     {
         return $this->hasOne(HabitCategory::class);
@@ -16,6 +23,6 @@ class HabitTrack extends Model
 
     public function category()
     {
-        return $this->hasOneThrough(Category::class, HabitCategory::class, "habit_track_id", "id");
+        return $this->hasOneThrough(Category::class, HabitCategory::class, "habit_track_id", "id", "id", "category_id");
     }
 }
