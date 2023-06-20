@@ -4,9 +4,17 @@ window.livewire.on('closeModal', function() {
     trackModal.hide();
 })
 
+window.livewire.on('openModal', function() {
+    trackModal.show();
+})
+
 window.livewire.on('reloadTable', function() {
     $('#track').DataTable().ajax.reload();
 })
+
+function setHabitTrack(id) {
+    Livewire.emit('setHabitTrack', id);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     $('#track').DataTable({
@@ -21,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return `<div class="extras-wrapper">
                         ${data}
                         <div class="extras-items">
-                        <i class="fa fa-pen text-xs text-success" role="button"></i>
+                        <i onclick="setHabitTrack(${row.id})" class="fa fa-pen text-xs text-success" role="button"></i>
                         <i class="fa fa-info-circle text-xs text-info" role="button"></i>
                         </div>
                     </div>`
