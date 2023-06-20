@@ -15,9 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
         serverSide: true,
         columns: [
             { data: 'id' },
-            { data: 'name' },
             {
-                data: 'id', render: function(data, type, row, meta) {
+                data: 'name',
+                render: function(data, type, row, meta) {
+                    return `<div class="extras-wrapper">
+                        ${data}
+                        <div class="extras-items">
+                        <i class="fa fa-pen text-xs text-success" role="button"></i>
+                        <i class="fa fa-info-circle text-xs text-info" role="button"></i>
+                        </div>
+                    </div>`
+                }
+
+            },
+            {
+                data: 'id',
+                className: "text-center",
+                render: function(data, type, row, meta) {
                     if (!row.category) {
                         return '';
                     }

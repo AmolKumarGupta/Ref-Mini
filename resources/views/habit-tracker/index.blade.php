@@ -13,6 +13,21 @@
     .hide-scroll {
         scrollbar-width: none;
     }
+
+    .extras-wrapper {
+        display: flex;
+        gap: .25rem;
+    }
+
+    .extras-items {
+        width: 0;
+        overflow-x: hidden;
+        transition: all 0.75s cubic-bezier(0.51, 0.06, 0.96, 0.44);
+    }
+
+    .extras-wrapper:hover .extras-items {
+        width: 100%;
+    }
 </style>
 <div class="container-fluid py-4">
     <div class="row gap-3 gap-lg-0">
@@ -35,7 +50,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Categories</th>
+                                <th class="text-center">Categories</th>
                                 <th>Time</th>
                                 <th>Created At</th>
                             </tr>
