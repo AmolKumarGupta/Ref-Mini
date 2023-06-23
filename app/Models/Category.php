@@ -12,9 +12,9 @@ class Category extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "name",
-        "slug",
-        "color",
-        "bgcolor"
+        'name',
+        'slug',
+        'color',
+        'bgcolor',
     ];
 }

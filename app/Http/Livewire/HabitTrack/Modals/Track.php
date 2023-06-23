@@ -6,16 +6,13 @@ use App\Models\Category;
 use App\Models\HabitCategory;
 use App\Models\HabitTrack;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Track extends Component
 {
-
     protected $listeners = [
-        "setHabitTrack" => "setHabitTrack"
+        'setHabitTrack' => 'setHabitTrack',
     ];
-
 
     public HabitTrack $formdata;
     public $modalOpen = false;
@@ -25,7 +22,7 @@ class Track extends Component
         'formdata.description' => 'required|string',
         'formdata.time' => 'required',
         'formdata.date' => 'required',
-        'formdata.category_id' => 'numeric'
+        'formdata.category_id' => 'numeric',
     ];
 
     public function mount()
@@ -37,11 +34,11 @@ class Track extends Component
     {
         $time = (int) $time;
         $hrs = (string) floor($time / 3600);
-        $hrs = str_pad($hrs, 2, "0", STR_PAD_LEFT);
+        $hrs = str_pad($hrs, 2, '0', STR_PAD_LEFT);
 
         $lefted = (int) $time % 3600;
         $mins = (string) floor($lefted / 60);
-        $mins = str_pad($mins, 2, "0", STR_PAD_LEFT);
+        $mins = str_pad($mins, 2, '0', STR_PAD_LEFT);
 
         return "$hrs:$mins";
     }
@@ -63,6 +60,7 @@ class Track extends Component
         $this->formdata->date = Carbon::parse($this->formdata->date)->toDateString();
 
         $categories = Category::get();
+
         return view('livewire.habit-track.modals.track', compact('categories'));
     }
 
