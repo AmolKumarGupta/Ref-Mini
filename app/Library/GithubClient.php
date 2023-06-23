@@ -22,6 +22,7 @@ class GithubClient
         if ($token == null) {
             $token = '';
         }
+
         $this->client->authenticate($token, null, AuthMethod::ACCESS_TOKEN);
 
         return $this->client;
@@ -99,7 +100,12 @@ class GithubClient
                 ],
             ],
         ];
-        $gistData = $this->auth()->api('gists')->update($gist->gist_id, $data);
+
+        try {
+            $gistData = $this->auth()->api('gists')->update($gist->gist_id, $data);
+        } catch (\Exception $e) {
+            return;
+        }
         activity()->on($gist)->log(':causer.name synced the repositories');
     }
 }

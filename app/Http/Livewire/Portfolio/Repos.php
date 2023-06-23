@@ -70,7 +70,6 @@ class Repos extends Component
     public function render()
     {
         $this->sortedData();
-
         return view('livewire.portfolio.repos');
     }
 
@@ -86,6 +85,9 @@ class Repos extends Component
 
         $sortedData = [];
         foreach ($repos as $r) {
+            if (!isset($hash[$r->pid])) {
+                continue;
+            }
             $sortedData[] = $hash[$r->pid];
             unset($hash[$r->pid]);
         }
@@ -101,7 +103,7 @@ class Repos extends Component
         $orderdata = json_decode($orderdata, true);
 
         $insertBatch = [];
-        foreach ($orderdata as $idx=>$data) {
+        foreach ($orderdata as $idx => $data) {
             $repo = PortfolioRepo::where('pid', $data)->where('user_id', auth()->user()->id)->first();
             if ($repo == null) {
                 $insertBatch[] = [
