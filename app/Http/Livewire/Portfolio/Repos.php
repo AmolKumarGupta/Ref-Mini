@@ -70,6 +70,7 @@ class Repos extends Component
     public function render()
     {
         $this->sortedData();
+
         return view('livewire.portfolio.repos');
     }
 

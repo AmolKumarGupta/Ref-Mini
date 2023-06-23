@@ -23,6 +23,6 @@ class HabitTrack extends Model
 
     public function category()
     {
-        return $this->hasOneThrough(Category::class, HabitCategory::class, "habit_track_id", "id", "id", "category_id");
+        return $this->hasOneThrough(Category::class, HabitCategory::class, 'habit_track_id', 'id', 'id', 'category_id');
     }
 }

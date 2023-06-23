@@ -6,7 +6,6 @@ use App\Models\HabitTrack;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class HabitTrackerController extends Controller
 {
@@ -47,15 +46,15 @@ class HabitTrackerController extends Controller
         $data = [];
         foreach ($records as $record) {
             $record['formattedDate'] = Carbon::parse($record['date'])->format('d M, Y');
-            $record['formattedTime'] = CarbonInterval::seconds($record['time'])->cascade()->forHumans(["short" => true]);
+            $record['formattedTime'] = CarbonInterval::seconds($record['time'])->cascade()->forHumans(['short' => true]);
             $data[] = $record;
         }
 
         return response()->json([
-            "draw" => $draw,
-            "recordsTotal" => $totalRecords,
-            "recordsFiltered" => $totalRecordsWithFilters,
-            "data" => $data
+            'draw' => $draw,
+            'recordsTotal' => $totalRecords,
+            'recordsFiltered' => $totalRecordsWithFilters,
+            'data' => $data,
         ]);
     }
 }

@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\HabitTrackerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
-use App\Http\Controllers\HabitTrackerController;
 use Illuminate\Support\Facades\Route;
 
 /*
