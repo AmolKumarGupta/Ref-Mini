@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ajax: AJAX_URL,
         processing: true,
         serverSide: true,
+        "order": [[0, 'desc']],
         columns: [
             { data: 'id' },
             {
