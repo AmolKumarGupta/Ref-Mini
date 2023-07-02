@@ -52,7 +52,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "lint": "php-cs-fixer --config=.php-cs-fixer.php fix"
+        "lint": "php-cs-fixer --config=.php-cs-fixer.php fix",
+        "fix": "./vendor/bin/phpstan analyse --memory-limit=1G"
     },
     "extra": {
         "laravel": {
