@@ -39,7 +39,7 @@ class InfoUserController extends Controller
         $user = auth()->user();
         $user->fill([
             'name'    => $attributes['name'],
-            'email' => $attribute['email'],
+            'email' => $attributes['email'],
             'phone'     => $attributes['phone'],
             'location' => $attributes['location'],
             'about_me'    => $attributes['about_me'],

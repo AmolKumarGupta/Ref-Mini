@@ -125,7 +125,9 @@ class Repos extends Component
         }
 
         $activity = activity(config('log.portfolio'))->withProperties($orderdata)->log(':causer.name sorted the portfolio repos');
+        // @phpstan-ignore-next-line
         $activity->subject_type = "App\Models\PortfolioRepo";
+        // @phpstan-ignore-next-line
         $activity->save();
     }
 
