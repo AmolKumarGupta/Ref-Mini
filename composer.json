@@ -18,12 +18,13 @@
         "spatie/laravel-activitylog": "^4.7"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.17",
         "laravel/sail": "^1.12",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/larastan": "^2.0",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -51,7 +52,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "lint": "php-cs-fixer --config=.php-cs-fixer.php fix"
+        "lint": "php-cs-fixer --config=.php-cs-fixer.php fix",
+        "fix": "./vendor/bin/phpstan analyse --memory-limit=1G"
     },
     "extra": {
         "laravel": {

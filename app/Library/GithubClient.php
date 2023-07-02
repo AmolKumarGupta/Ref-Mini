@@ -13,7 +13,7 @@ class GithubClient
 
     public function auth()
     {
-        if (isset($this->client) && $this->client) {
+        if (isset($this->client) && $this->client!=null) {
             return $this->client;
         }
 
