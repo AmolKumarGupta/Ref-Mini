@@ -79,7 +79,13 @@ class Track extends Component
         $category_id = $this->formdata->category_id;
         unset($this->formdata->category_id);
 
+        $prop = $this->formdata->logProp();
         if ($this->formdata->save()) {
+            activity()
+            ->on($this->formdata)
+            ->withProperties($prop)
+            ->log(':subject.name is saved');
+
             $habitCategory = HabitCategory::where('habit_track_id', $this->formdata->id)->first();
             if ($habitCategory == null) {
                 $habitCategory = new HabitCategory;
