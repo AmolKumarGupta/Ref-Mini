@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${data}
                         <div class="extras-items">
                         <i onclick="setHabitTrack(${row.id})" class="fa fa-pen text-xs text-success" role="button"></i>
-                        <i class="fa fa-info-circle text-xs text-info" role="button"></i>
+                        <i class="fa fa-info-circle text-xs text-info" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="${row.description}"></i>
                         </div>
                     </div>`
                 }
@@ -57,6 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             { data: 'date', render: (data, type, row) => row.formattedDate }
-        ]
+        ],
+        "drawCallback": function (settings) {
+            let tooltipTriggerList = [].slice.call(document.querySelectorAll('#track [data-bs-toggle="tooltip"]'))
+            let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        }
     })
 });
