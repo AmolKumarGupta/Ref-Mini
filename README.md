@@ -1,4 +1,7 @@
-# Refmini CMS
+# Refmini CMS 
+
+[![Code Review](https://github.com/AmolKumarGupta/Ref-Mini/actions/workflows/static_analysis.yml/badge.svg)](https://github.com/AmolKumarGupta/Ref-Mini/actions/workflows/static_analysis.yml)
+
 A Personal Website is a versatile platform that allows you to manage your data. It comes equipped with a habit tracker tool to help me stay on top of my daily goals and routines. It allows you to showcase your repositories on your website 
 
 1. Menu Management
