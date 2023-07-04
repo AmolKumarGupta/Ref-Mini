@@ -16,6 +16,7 @@ Need Github token with read:user and gists scope.
 ## Demo
 
 <div align="center" style="display:flex; gap: 1rem;">
-<img src="https://user-images.githubusercontent.com/88397611/223203265-0e38d136-176c-441b-ba9e-08a921468eb2.png" alt="profile" width="400">
-<img src="https://user-images.githubusercontent.com/88397611/223205122-9bc87b5a-6e72-43ae-aab4-a4a968f74bf1.png" alt="menu" width="400">
+    <img src="https://github.com/AmolKumarGupta/Ref-Mini/assets/88397611/597900f7-bca3-440e-8a9b-8b4b0e5c012f" alt="daskboard" width="400">
+    <img src="https://user-images.githubusercontent.com/88397611/223205122-9bc87b5a-6e72-43ae-aab4-a4a968f74bf1.png" alt="menu" width="400">
+    <img src="https://github.com/AmolKumarGupta/Ref-Mini/assets/88397611/816c0138-fd5f-4f99-b257-4ee77d85dcf1" alt="repos" width="400">
 </div>
