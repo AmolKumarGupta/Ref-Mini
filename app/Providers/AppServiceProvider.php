@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helper;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('helpers', function($app) {
+            return new Helper(config('helpers'));
+        });
     }
 
     /**

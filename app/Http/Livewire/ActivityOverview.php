@@ -17,7 +17,7 @@ class ActivityOverview extends Component
 
     public function activities(): Collection
     {
-        return Activity::limit(10)
+        return Activity::limit(6)
             ->orderBy('id', 'DESC')
             ->get();
     }
