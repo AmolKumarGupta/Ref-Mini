@@ -11,7 +11,7 @@ class ActivityOverview extends Component
     public function render()
     {
         return view('livewire.activity-overview', [
-            'activities' => $this->activities()
+            'activities' => $this->activities(),
         ]);
     }
 

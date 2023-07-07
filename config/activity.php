@@ -3,13 +3,13 @@
 use App\Models\User;
 
 return [
-    "icon" => [
-        "default" => "fa fa-bell",
+    'icon' => [
+        'default' => 'fa fa-bell',
         User::class => 'fa fa-user',
     ],
 
     'color' => [
-        "default" => "success",
+        'default' => 'success',
         User::class => 'info',
-    ]
+    ],
 ];
