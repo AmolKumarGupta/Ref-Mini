@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-lg-4 col-md-6">
-      @include('dashboard.activity')
+      @livewire('activity-overview')
     </div>
   </div>
 
