@@ -12,7 +12,11 @@
             @foreach($activities as $activity)
             <div class="timeline-block mb-3">
                 <span class="timeline-step">
-                    <i class="{{ config('activity.icon.default') }} text-success text-gradient"></i>
+                    <i 
+                        class="{{ config('activity.icon')[$activity->subject_type] ?? config('activity.icon.default') }} 
+                        text-{{ config('activity.color')[$activity->subject_type] ?? config('activity.color.default') }} 
+                        text-gradient"
+                    ></i>
                 </span>
                 <div class="timeline-content">
                     <h6 class="text-dark text-sm font-weight-bold mb-0">{{ $activity->description }}</h6>
