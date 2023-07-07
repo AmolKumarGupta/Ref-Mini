@@ -9,18 +9,21 @@ class LogTraitTest extends TestCase
 {
     use LogData;
 
-    public Array $old = [];
-    public Array $dirty = [];
+    public array $old = [];
+    public array $dirty = [];
 
-    function getOriginal(): Array {
+    public function getOriginal(): array
+    {
         return $this->old;
     }
 
-    function getDirty(): Array {
+    public function getDirty(): array
+    {
         return $this->dirty;
     }
 
-    function test_model_has_no_change() {
+    public function test_model_has_no_change()
+    {
         $this->old = [];
         $this->dirty = [];
 
@@ -29,15 +32,15 @@ class LogTraitTest extends TestCase
         $this->assertEmpty($data['old']);
     }
 
-    function test_model_has_one_change() {
-        $this->old = ["name" => "John", "age" => 12];
-        $this->dirty = ["age" => "12"];
+    public function test_model_has_one_change()
+    {
+        $this->old = ['name' => 'John', 'age' => 12];
+        $this->dirty = ['age' => '12'];
 
         $data = $this->logProp();
 
         $this->assertCount(1, $data['new']);
-        $this->assertArrayHasKey("age", $data['new']);
+        $this->assertArrayHasKey('age', $data['new']);
         $this->assertEquals('12', $data['new']['age']);
     }
-
 }
