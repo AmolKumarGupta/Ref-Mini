@@ -5,11 +5,14 @@ namespace App\Http\Livewire\HabitTrack\Modals;
 use App\Models\Category;
 use App\Models\HabitCategory;
 use App\Models\HabitTrack;
+use App\Traits\ConvertTime;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class Track extends Component
 {
+    use ConvertTime;
+
     protected $listeners = [
         'setHabitTrack' => 'setHabitTrack',
     ];
@@ -30,19 +33,6 @@ class Track extends Component
         $this->formdata = new HabitTrack;
     }
 
-    public function timestring($time): string
-    {
-        $time = (int) $time;
-        $hrs = (string) floor($time / 3600);
-        $hrs = str_pad($hrs, 2, '0', STR_PAD_LEFT);
-
-        $lefted = (int) $time % 3600;
-        $mins = (string) floor($lefted / 60);
-        $mins = str_pad($mins, 2, '0', STR_PAD_LEFT);
-
-        return "$hrs:$mins";
-    }
-
     public function setHabitTrack(HabitTrack $habitTrack)
     {
         $cat = HabitCategory::where('habit_track_id', $habitTrack->id)->first();
@@ -56,7 +46,7 @@ class Track extends Component
 
     public function render()
     {
-        $this->formdata->time = $this->timestring($this->formdata->time);
+        $this->formdata->time = $this->toHourString(seconds: $this->formdata->time);
         $this->formdata->date = Carbon::parse($this->formdata->date)->toDateString();
 
         $categories = Category::get();
@@ -69,10 +59,7 @@ class Track extends Component
         $this->modalOpen = true;
 
         if ($this->formdata->time) {
-            $timeString = explode(':', (string) $this->formdata->time);
-            $hrs = (int) $timeString[0] * 3600;
-            $mins = (int) $timeString[1] * 60;
-            $this->formdata->time = $hrs + $mins;
+            $this->formdata->time = $this->hourStringToSeconds(hourString: $this->formdata->time);
         }
 
         $this->validate();
