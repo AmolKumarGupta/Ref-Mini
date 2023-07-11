@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\HabitTrack\Modals;
 
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Models\Category;
 use App\Models\HabitTrack;
 use App\Traits\ConvertTime;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 class BulkTracks extends Component
 {
@@ -40,6 +40,7 @@ class BulkTracks extends Component
             $track->time = $this->toHourString(seconds: $track->time);
             $track->date = Carbon::parse($track->date)->toDateString();
         }
+
         return view('livewire.habit-track.modals.bulk-tracks');
     }
 

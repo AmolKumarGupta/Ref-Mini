@@ -2,10 +2,10 @@
 
 namespace App\Traits;
 
-trait ConvertTime 
+trait ConvertTime
 {
     /**
-     * convert seconds to HH:MM
+     * convert seconds to HH:MM.
      */
     public function toHourString(string|int|null $seconds): string
     {
@@ -21,7 +21,7 @@ trait ConvertTime
     }
 
     /**
-     * convert HH:MM to seconds
+     * convert HH:MM to seconds.
      * @return int seconds
      */
     public function hourStringToSeconds(string $hourString): int
@@ -29,7 +29,7 @@ trait ConvertTime
         $timeString = explode(':', (string) $hourString);
         $hrs = (int) $timeString[0] * 3600;
         $mins = (int) $timeString[1] * 60;
+
         return $hrs + $mins;
     }
-
 }
