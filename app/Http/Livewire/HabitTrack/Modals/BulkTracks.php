@@ -2,16 +2,21 @@
 
 namespace App\Http\Livewire\HabitTrack\Modals;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\HabitTrack;
+use App\Traits\ConvertTime;
 use Illuminate\Database\Eloquent\Collection;
 
 class BulkTracks extends Component
 {
+    use ConvertTime;
+
     public $tracks;
 
     /**
-     * @property Collection<array-key,Category>
+     * @var Collection<array-key,Category>
      */
     public Collection $categories;
 
@@ -26,10 +31,15 @@ class BulkTracks extends Component
     public function mount(): void
     {
         $this->setCategories();
+        $this->tracks = [new HabitTrack, new HabitTrack, new HabitTrack];
     }
 
     public function render()
     {
+        foreach ($this->tracks as $track) {
+            $track->time = $this->toHourString(seconds: $track->time);
+            $track->date = Carbon::parse($track->date)->toDateString();
+        }
         return view('livewire.habit-track.modals.bulk-tracks');
     }
 
