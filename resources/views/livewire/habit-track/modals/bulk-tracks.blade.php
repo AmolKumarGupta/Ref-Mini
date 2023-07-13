@@ -1,4 +1,4 @@
-<div class="modal fade " id="bulk-modal-track" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+<div class="modal fade @if($modalOpen) show @endif" @if($modalOpen) style="display: block;" @endif id="bulk-modal-track" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
     <style>
         .bulk-layout {
             display: grid;
@@ -6,7 +6,7 @@
             gap: 1rem;
         }
     </style>
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="modal-title-default">Create Tracks</h6>
@@ -17,6 +17,12 @@
 
             <form wire:submit.prevent="save">
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col text-end">
+                            <a wire:click="add" href="javascript:void(0);" class="btn bg-gradient-info">Add</a>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 bulk-layout">
                             <label for="item_name">Name</label>
@@ -40,8 +46,7 @@
                             </div>
 
                             <div class="form-group">
-                                
-                                <select id="category-select" wire:model.defer="tracks.{{ $index }}.category_id" name="category" class="form-select text-capitalize">
+                                <select wire:model.defer="tracks.{{ $index }}.category_id" class="form-select text-capitalize" id="bulk-modal-category-{{ $index }}">
                                     @foreach($categories as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                     @endforeach
@@ -50,7 +55,6 @@
                             </div>
 
                             <div class="form-group">
-                                
                                 <input wire:model.defer="tracks.{{ $index }}.time" type="time" name="time" class="form-control" placeholder="">
                                 @error('tracks.{{ $index }}.time') <small data-error="url" class="text-danger">{{ $message }}</small> @enderror
                             </div>
