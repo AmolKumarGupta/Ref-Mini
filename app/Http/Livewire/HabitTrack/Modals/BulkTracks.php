@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\HabitTrack\Modals;
 
 use App\Models\Category;
-use App\Models\HabitTrack;
 use App\Traits\ConvertTime;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -41,6 +40,7 @@ class BulkTracks extends Component
         foreach ($this->tracks as $track) {
             $track['time'] = $this->toHourString(seconds: $track['time']);
         }
+
         return view('livewire.habit-track.modals.bulk-tracks');
     }
 
@@ -58,11 +58,11 @@ class BulkTracks extends Component
     public function toHabitTrack(): array
     {
         return [
-            "name" => "",
-            "description" => "",
-            "time" => "00:00",
-            "date" => Carbon::now()->toDateString(),
-            "category_id" => "0",
+            'name' => '',
+            'description' => '',
+            'time' => '00:00',
+            'date' => Carbon::now()->toDateString(),
+            'category_id' => '0',
         ];
     }
 }

@@ -2,9 +2,10 @@
 
 return [
 
-    /**
-     * @var string $prefix
+    /*
      * The prefix of gist's files
+     *
+     * @var string $prefix
      */
     'prefix' => 'refmini_',
 
