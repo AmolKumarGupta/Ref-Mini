@@ -39,6 +39,10 @@
                     <div data-bs-toggle="modal" data-bs-target="#modal-track" role="button" class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center" style="line-height: 1;">
                         <i class="fa fa-xs fa-plus" style="top: -25%" aria-hidden="true"></i>
                     </div>
+
+                    <div id="bulk-track-btn" data-bs-toggle="modal" data-bs-target="#bulk-modal-track" role="button" class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center" style="line-height: 1;">
+                        <i class="fa fa-xs fa-list" style="top: -25%" aria-hidden="true"></i>
+                    </div>
                 </h5>
 
             </div>
@@ -66,6 +70,7 @@
 </div>
 
 @livewire('habit-track.modals.track')
+@livewire('habit-track.modals.bulk-tracks')
 
 @endsection
 
