@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\HabitTrack\Modals;
 
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Models\Category;
 use App\Models\HabitCategory;
 use App\Models\HabitTrack;
 use App\Traits\ConvertTime;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 class BulkTracks extends Component
 {
@@ -97,12 +97,12 @@ class BulkTracks extends Component
 
             activity()
                 ->on($habit_track)
-                ->withProperties(["bulk" => $track])
+                ->withProperties(['bulk' => $track])
                 ->log(':subject.name is saved in bulk');
 
             $bulk_category[] = [
-                "category_id" => $category_id,
-                "habit_track_id" => $habit_track->id,
+                'category_id' => $category_id,
+                'habit_track_id' => $habit_track->id,
             ];
         }
 
@@ -116,9 +116,8 @@ class BulkTracks extends Component
 
     public function refresh()
     {
-        if (count($this->tracks)>1) {
+        if (count($this->tracks) > 1) {
             $this->tracks = [$this->toHabitTrack()];
         }
     }
-
 }
