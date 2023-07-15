@@ -9,4 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class HabitCategory extends Model
 {
     use HasFactory, SoftDeletes;
+
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'category_id',
+        'habit_track_id',
+    ];
 }

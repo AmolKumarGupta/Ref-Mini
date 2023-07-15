@@ -1,7 +1,12 @@
 let trackModal = new bootstrap.Modal('#modal-track');
+let bulkTrackModal = new bootstrap.Modal('#bulk-modal-track');
 
 window.livewire.on('closeModal', function() {
     trackModal.hide();
+})
+
+window.livewire.on('closeBulkModal', function() {
+    bulkTrackModal.hide();
 })
 
 window.livewire.on('openModal', function() {
@@ -66,3 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 });
+
+
+
+$(function() {
+    $('#bulk-track-btn').click(function () {
+        Livewire.emit('bulk_refresh');
+    });
+})
