@@ -4,33 +4,25 @@ namespace App\View\Composers;
 
 use App\Models\Menu;
 use App\Models\MenuSection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
 
 class MenuComposer
 {
-    public function getMenu($section_id)
-    {
-        $menus = Menu::where('fk_section_id', $section_id)->orderBy('order', 'ASC')->get();
-        $res = [];
-
-        foreach ($menus as $m) {
-            $res[] = [
-                'name' => $m->name,
-                'url' => $m->url,
-                'icon' => $m->icon,
-            ];
-        }
-
-        return $res;
-    }
-
     public function compose(View $view): void
     {
+        /**
+         * @var array<array-key,Menu> $hash
+         */
         $hash = [];
-        $sections = MenuSection::orderBy('order', 'ASC')->get();
+
+        /**
+         * @var Collection<MenuSection> $sections
+         */
+        $sections = MenuSection::with('menu')->orderBy('order', 'ASC')->get();
 
         foreach ($sections as $s) {
-            $hash[$s->name] = $this->getMenu($s->id);
+            $hash[$s->name] = $s->menu;
         }
         $view->with('menugrp', $hash);
     }
