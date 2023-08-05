@@ -20,7 +20,7 @@
                 <td class="w-0">
                     <div class="text-end space-x-2">
                         <i onclick="openEditItemModal(this)" data-edit='{{ $itemJson }}' role="button" class="text-gradient text-info fa fa-xs fa-pen"></i>
-                        <i wire:click="delete('{{ $item->id }}')" role="button" class="text-gradient text-danger fa fa-xs fa-trash"></i>
+                        <i onclick="deleteMenuItem('{{ $item->id }}')" role="button" class="text-gradient text-danger fa fa-xs fa-trash"></i>
                     </div>
                 </td>
             </tr>

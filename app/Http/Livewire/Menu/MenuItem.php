@@ -12,7 +12,9 @@ class MenuItem extends Component
         'setMenu',
         'refreshMenuItem' => 'setMenuItems',
         'updateItems' => 'update',
+        'deleteMenuItem' => 'delete',
     ];
+
     public $menuSectionId;
     public $menuItems;
 

@@ -180,5 +180,6 @@
     const createUrl = '{{ route("menu.section.create") }}';
     const createItemUrl = '{{ route("menu.item.create") }}';
 </script>
+<script src="{{ asset('public/assets/js/plugins/sweetalert.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/menu.js') }}"></script>
 @endsection
