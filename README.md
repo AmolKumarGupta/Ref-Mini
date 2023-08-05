@@ -12,9 +12,33 @@ A Personal Website is a versatile platform that allows you to manage your data. 
 
 ### Requirements For Github (Optional)
 
-Need Github token with read:user and gists scope.
+Need Github token with read:user and gists scope. It will be saved in profile page under gist token.
 
-## Demo
+### Installation
+
+clone the repository from gitub
+```
+git clone https://github.com/AmolKumarGupta/Ref-Mini.git
+```
+
+install composer packages 
+
+```
+composer install
+```
+
+copy `.env.example` to `.env` and setup your database.
+if APP_KEY is not preset then generate it
+```
+php artisan key:generate --ansi
+```
+
+Now run setup command, it will run migrations and seeds
+```
+php artisan refmini:install
+```
+
+## ScreenShot
 
 <div align="center" style="display:flex; gap: 1rem;">
     <img src="https://github.com/AmolKumarGupta/Ref-Mini/assets/88397611/597900f7-bca3-440e-8a9b-8b4b0e5c012f" alt="daskboard" width="400">
