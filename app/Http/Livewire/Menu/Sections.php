@@ -11,6 +11,7 @@ class Sections extends Component
     protected $listeners = [
         'refreshMenuSection' => 'refresh',
         'updateSection' => 'update',
+        'deleteMenuSection' => 'delete',
     ];
     public $menuSection;
 

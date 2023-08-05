@@ -66,6 +66,14 @@ function edit (e) {
     Livewire.emit('updateSection', id, name);
 }
 
+function deleteMenuSection(id) {
+    confirmAlert({}, () => livewire.emit('deleteMenuSection', id));
+}
+
+function deleteMenuItem(id) {
+    confirmAlert({}, () => livewire.emit('deleteMenuItem', id));
+}
+
 window.addEventListener('focusError', event => {
     let editForm = document.querySelector('#modal-menusection-edit');
     editForm.querySelector(`[data-error="name"]`).textContent = event.detail.err;
