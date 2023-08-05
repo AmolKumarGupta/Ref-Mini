@@ -43,7 +43,7 @@ class MenuItem extends Component
     {
         $item = Menu::find($id);
         Menu::destroy($id);
-        activity()->on($item)->withProperties($item->attributesToArray())->log(':subject:name is deleted');
+        activity()->on($item)->withProperties($item->attributesToArray())->log(':subject.name is deleted');
         $this->setMenuItems();
     }
 
