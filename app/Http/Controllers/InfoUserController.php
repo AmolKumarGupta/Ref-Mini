@@ -20,11 +20,11 @@ class InfoUserController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'max:50'],
             'email' => ['required', 'email', 'max:50', Rule::unique('users')->ignore(Auth::user()->id)],
-            'phone'     => ['max:50'],
+            'phone'     => ['nullable', 'digits:10'],
             'location' => ['max:70'],
             'about_me'    => ['max:150'],
-            'github_username' => ['string'],
-            'gists_token' => [''],
+            'github_username' => ['nullable', 'string'],
+            'gists_token' => ['nullable'],
         ]);
         if ($request->get('email') != Auth::user()->email) {
             if (env('IS_DEMO') && Auth::user()->id == 1) {
