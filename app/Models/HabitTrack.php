@@ -19,6 +19,7 @@ class HabitTrack extends Model
         'description',
         'time',
         'date',
+        'fk_user_id',
     ];
 
     public function habit_category()

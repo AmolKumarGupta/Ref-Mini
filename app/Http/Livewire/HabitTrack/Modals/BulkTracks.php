@@ -77,6 +77,7 @@ class BulkTracks extends Component
             'time' => '00:00',
             'date' => Carbon::now()->toDateString(),
             'category_id' => null,
+            'fk_user_id' => auth()->id(),
         ];
     }
 
