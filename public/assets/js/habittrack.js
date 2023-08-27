@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 $(function() {
+    $('#single-track-btn').click(function () {
+        Livewire.emit('single_refresh');
+    });
+
     $('#bulk-track-btn').click(function () {
         Livewire.emit('bulk_refresh');
     });

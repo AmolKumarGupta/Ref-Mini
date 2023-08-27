@@ -15,6 +15,7 @@ class Track extends Component
 
     protected $listeners = [
         'setHabitTrack' => 'setHabitTrack',
+        'single_refresh' => 'refresh',
     ];
 
     public HabitTrack $formdata;
@@ -66,7 +67,9 @@ class Track extends Component
         $category_id = $this->formdata->category_id;
         unset($this->formdata->category_id);
 
+        $this->formdata->fk_user_id = auth()->id();
         $prop = $this->formdata->logProp();
+
         if ($this->formdata->save()) {
             activity()
             ->on($this->formdata)
@@ -84,4 +87,9 @@ class Track extends Component
         $this->emit('closeModal');
         $this->emit('reloadTable');
     }
+
+    public function refresh() {
+        $this->formdata = new HabitTrack;
+    }
+    
 }
