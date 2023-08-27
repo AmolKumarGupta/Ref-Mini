@@ -88,8 +88,8 @@ class Track extends Component
         $this->emit('reloadTable');
     }
 
-    public function refresh() {
+    public function refresh()
+    {
         $this->formdata = new HabitTrack;
     }
-    
 }
