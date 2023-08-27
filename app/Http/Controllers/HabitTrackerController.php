@@ -24,13 +24,15 @@ class HabitTrackerController extends Controller
         $length = $request->length;
         $search = $request->search['value'];
 
-        $totalRecords = HabitTrack::count();
-        $totalRecordsWithFilters = HabitTrack::where(function ($query) use ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        })
+        $totalRecords = HabitTrack::where('fk_user_id', auth()->id())->count();
+        $totalRecordsWithFilters = HabitTrack::where('fk_user_id', auth()->id())->
+            where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
             ->count();
 
         $records = HabitTrack::with('category')->orderBy($orderBy, $orderDir)
+            ->where('fk_user_id', auth()->id())
             ->where(function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             });
