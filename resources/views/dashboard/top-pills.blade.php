@@ -71,10 +71,9 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Last Login</p>
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Last Login At</p>
                             <h5 class="font-weight-bolder mb-0">
-                                1 hours ago
-                                {{-- <span class="text-success text-sm font-weight-bolder">+5%</span> --}}
+                                {{ auth()->user()->lastLogin() }}
                             </h5>
                         </div>
                     </div>

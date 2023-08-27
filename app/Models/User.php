@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Traits\LogData;
+use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Models\Activity;
 
 class User extends Authenticatable
 {
@@ -46,4 +49,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * get relative time of last loggedin.
+     */
+    public function lastLogin(): string
+    {
+        $activity = Activity::where('log_name', 'login')
+            ->where('causer_id', auth()->id())
+            ->where('causer_type', self::class)
+            ->orderBy('id', 'DESC')
+            ->skip(1)
+            ->first();
+
+        if (!$activity) {
+            return 'N/A';
+        }
+
+        return Carbon::parse($activity->created_at)->diffForHumans(
+            now(),
+            CarbonInterface::DIFF_RELATIVE_AUTO,
+            true
+        );
+    }
 }
