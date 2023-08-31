@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Library\GithubClient;
+use App\Models\HabitTrack;
 
 class DashBoardController extends Controller
 {
     public function index(GithubClient $client)
     {
         $projectsView = $this->displayRepo($client);
+        $trackWeekCount = $this->trackWeekCount();
 
-        return view('dashboard.dashboard', compact('projectsView'));
+        return view('dashboard.dashboard', compact('projectsView', 'trackWeekCount'));
     }
 
     /**
@@ -32,5 +34,21 @@ class DashBoardController extends Controller
             return view('errors.dashboard.projects', ['error' => $e->getMessage()]);
             // return view('errors.dashboard.projects', ['error' => 'Something went wrong']);
         }
+    }
+
+    protected function trackWeekCount(): array
+    {
+        $current = HabitTrack::where('fk_user_id', auth()->id())
+                ->where('date', '>', now()->startOfWeek()->toDateTime())
+                ->count();
+
+        $previous = HabitTrack::where('fk_user_id', auth()->id())
+            ->where('date', '<', now()->startOfWeek()->toDateTime())
+            ->where('date', '>', now()->startOfWeek()->subDays(7)->toDateTime())
+            ->count();
+
+        $percentage = (int) $previous > 0 ? ($current - $previous) / $previous * 100 : 0;
+
+        return compact('current', 'previous', 'percentage');
     }
 }

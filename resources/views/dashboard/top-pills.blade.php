@@ -27,10 +27,14 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Total stars</p>
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Track week counts</p>
                             <h5 class="font-weight-bolder mb-0">
-                                8
-                                {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
+                                {{ $trackWeekCount['current'] }}
+                                @if($trackWeekCount['percentage'])
+                                    <span class="text-{{ $trackWeekCount['percentage']>0 ? 'success' : 'danger'}} text-sm font-weight-bolder">
+                                        {{ $trackWeekCount['percentage'] }}%
+                                    </span>
+                                @endif
                             </h5>
                         </div>
                     </div>
