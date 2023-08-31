@@ -47,9 +47,8 @@ class DashBoardController extends Controller
             ->where('date', '>', now()->startOfWeek()->subDays(7)->toDateTime())
             ->count();
 
-        $percentage = (int) $previous>0 ? ($current - $previous)/$previous * 100 : 0;
+        $percentage = (int) $previous > 0 ? ($current - $previous) / $previous * 100 : 0;
 
         return compact('current', 'previous', 'percentage');
     }
-
 }
